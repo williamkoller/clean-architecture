@@ -15,7 +15,7 @@ Como o nome diz, é responsável pelo nosso domínio, mas afinal o que isso sign
 Aqui nós implementamos os métodos que manipulam o nosso domínio, e como funcionam as nossas ferramentas auxiliares (Hasher por exemplo) e aqui vem um dos conceitos mais importantes, no nosso data layer nós não podemos ter libs externas e nem referênica direta a códigos externos, para isso iremos utilizar o conceito de Adapter, que será explicado na pasta de Infra.
 
 * UseCases: São a implementação dos casos de uso definidos no nosso domínio.
-Hasher: É responsável por ter a assinatura que irá receber a lib do bcrypt do Infra Layer.
+* Hasher: É responsável por ter a assinatura que irá receber a lib do bcrypt do Infra Layer.
 * RemoteCreateFile: É responsável por ter a classe que irá implementar CreateFile com suas respectivas responsabilidades.
 * DbLoadTemplateId: É responsável por ter a classe que contém assinatura que receberá como paramêtro a interface do templateHTML e templateSlug.
 
@@ -23,12 +23,12 @@ Hasher: É responsável por ter a assinatura que irá receber a lib do bcrypt do
 Aqui nós iremos fazer a ponte entre as libs desse mundão e o nosso código. E por falar nisso, enquanto você lê esse readme, nasceu mais um framework Javascript. Aqui nós iremos criar os nossos Adapters das libs que iremos utilizar no projeto, e o que são esses adapters? Os adapters são responsáveis por adequar o funcionamento de um código externo com a nossa aplicação. Vamos pegar por exemplo o HMTL-PDF, ele é uma lib para gerar PDFs na aplicação. Dessa forma quando formos trocar de lib, nós só precisamos criar um adapter que implemente essas interfaces, sem tocar em uma linha da nossa regra de negócio, legal né?
 
 * HTML-PDF-ADAPTER: Contém os nossos adapter do HTML-PDF para gerar nossos PDFs.
-Google-Storage: Contém a função que recebe o PDF gerado e envia-o para Bucket/Storage.
+* Google-Storage: Contém a função que recebe o PDF gerado e envia-o para Bucket/Storage.
 * Http: Contém os nossos adapter do axios para fazer requests.
 
 ### Presentation:
 Aqui nós iremos fazer a ponte entre o Domain Layer utilizando seus UseCases e AxiosAdapters, podemos notar que iremos utilizar os controllers com suas assinaturas e utilizando suas interfaces HttpRequest e HttpResponse. Iremos utilizar os Https para receber e enviar os dados que vem do body da requisição e nenhum momento desta camada irá perceber que utilizaremos o express.
-CreateFileController: É responsãvel por ter a assinatura que irá implementar as interfaces dos Https;
+* CreateFileController: É responsãvel por ter a assinatura que irá implementar as interfaces dos Https;
 * Helpers/Http: É responsável por ter as implementações do HttpResponse com seus respecetivos statusCode e body.
 * Protocols: É responsável por ter as assinaturas dos  Controller, Https e Middlewares.
 
